@@ -26,7 +26,7 @@ $ git push -u origin master
 
 ## Conectar visualstudio + github
 ```
-code-oss://vscode.github-authentication/did-authenticate?windowId=1&code=1b573121fbef350e4765&state=2d1217c4-5c72-4a6b-b08b-2b52b90e9221
+code-oss://vscode.github-authentication/did-authenticate?windowId=1&code=1b5731xxxxxxxxxxxxxxx&state=2dxxxx-5c72-4a6b-b08b-2b52xxxxxxxx21
 Copy the token.
 
 Switch back to VS code.

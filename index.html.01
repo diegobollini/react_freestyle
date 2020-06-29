@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://img.icons8.com/pastel-glyph/64/000000/monitor.png">
+    <title>Freestyleando código</title>
+    <style>
+        img {
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgb(37, 37, 36);
+            width: 100px;
+        }
+        picture {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100px;
+        }
+        img.disabled {
+            opacity: 0.3;
+        }
+    </style>
+
+<!-- Cargar React. -->
+<!-- Nota: cuando se despliegue, reemplazar "development.js" con "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+    <body>
+        <h1>Mujeres en Tecnología</h1>
+        <div id="app"></div>
+        <script type="text/babel">
+/* Comento todo esto para pasar a la app react
+            const Avatar = params => {
+                const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+                return `<picture>
+                    <img src="${src}" />
+                    <h4>${params.name}</h4>
+                </picture>
+                `;
+            };
+
+        $app.innerHTML += Avatar({ id:12, name: "nombre1"});
+        $app.innerHTML += Avatar({ id:23, name: "nombre2"});
+
+        $app.querySelectorAll('img').forEach(img => {
+            img.addEventListener('click', () => {
+                img.classList.toggle('disabled')
+            })
+        })
+*/
+            const $app = document.getElementById('app');
+            const h = React.createElement;
+
+            const Avatar = params =>{
+                const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+            //    return h('img', {src});
+            return (
+            <picture>
+                <img onClick={(event)=> {
+                    event.target.classList.toggle('disabled');
+
+                //    alert(event.target); //Pop up Esta página dice [object HTMLImageElement]
+                //    alert('click!')
+
+                } } src={src} />
+            <strong> {params.name}</strong>
+            </picture>
+            );
+            };
+
+            ReactDOM.render(
+                <div>
+                    <Avatar id={25} name="nombre1" />
+                    <Avatar id={6} name="nombre2" />
+                </div>,
+            // esta línea era para renderizar utilizando h (pre-babel)
+            //    h("div", null, [h(Avatar, { id: 21 }), h(Avatar, { id: 24 })]),
+            $app);
+
+        </script>
+    </body>
+</html>

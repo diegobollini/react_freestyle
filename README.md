@@ -46,7 +46,7 @@ Paste the token and hit enter.
 ```
 
 ### Construyendo nuestra app
-Todo lo que definamos a este componente, se aplica (por ejemplo definir <h4></h4> para el parámetro name, podría ser <strong></strong>)
+Todo lo que definamos a este componente, se aplica (por ejemplo definir la etiqueta h4 para el parámetro name, podría ser strong):
 ```html
 const $app = document.getElementById('app');
             const Avatar = params => {
@@ -60,7 +60,7 @@ const $app = document.getElementById('app');
 ```
 
 ### Constante "Avatar"
-Previamente definimos esta constante en index.html, buscando la imagen de acuerdo a la id definida en estas líneas
+Previamente definimos esta constante en index.html, buscando la imagen de acuerdo a la id definida en estas líneas:
 ```html
 $app.innerHTML += Avatar({ id:12, name: "nombre1"});
 $app.innerHTML += Avatar({ id:23, name: "nombre2"});
@@ -73,7 +73,7 @@ $app.querySelectorAll('img').forEach(img => {
                 img.classList.toggle('disabled')
 ```
 
-## Sesión práctica 02: Arranca react
+## Sesión práctica 02: Arranca react, reactdom, etc.
 Agrego las siguientes etiquetas según la [documentación](https://es.reactjs.org/docs/add-react-to-a-website.html#step-2-add-the-script-tags):
 
 ```html
@@ -84,7 +84,7 @@ Agrego las siguientes etiquetas según la [documentación](https://es.reactjs.or
 ```
 - TIP: coma separa 2 argumentos de una función, punto te permite entrar a una función dentro de la clase
 
-Entonces creo la app Avatar pero con react a lo guaso, importando directamente en el html
+Entonces creo la app Avatar pero con react a lo guaso, importando directamente en el html:
 ```html
 const $app = document.getElementById('app');
             const h = React.createElement;
@@ -96,4 +96,26 @@ const $app = document.getElementById('app');
             ReactDOM.render(h(Avatar, { id: 18 }), $app);
 ```
 
+## Sesión práctica 03: reactdom, jsx, babel y más
+Podríamos utilizar el tercer parámetro de una función para renderizar más de una imagen, pero claramente no tiene sentido:
+```html
+ReactDOM.render(
+                h("div", null, [h(Avatar, { id: 21 }), h(Avatar, { id: 24 })]),$app);
+```
 
+Prueba JSX de forma rápida
+```html
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+type="text/babel"
+```
+## Sesión práctica 04: componentes, estados
+Por ejemplo buen uso de props:
+```html
+const Avatar = props => {
+    <strong>{props.name}</strong>
+```
+Puedo desestructurar "objetos":
+```html
+const Avatar = ({id, name, size}) => {
+    <strong>{name}</strong>
+```

@@ -9,13 +9,19 @@
         img {
             border-radius: 50%;
             box-shadow: 0 0 20px rgb(37, 37, 36);
-            width: 100px;
+            width: 100%;
         }
         picture {
             display: flex;
             flex-direction: column;
             text-align: center;
             width: 100px;
+        }
+        picture.is-small {
+            width: 60px;
+        }
+        picture.is-large {
+            width: 150px;
         }
         img.disabled {
             opacity: 0.3;
@@ -26,42 +32,50 @@
 <!-- Nota: cuando se despliegue, reemplazar "development.js" con "production.min.js". -->
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
 </head>
     <body>
         <h1>Mujeres en Tecnología</h1>
         <div id="app"></div>
-        <script>
-/* Comento todo esto para pasar a la app react
-            const Avatar = params => {
-                const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
-                return `<picture>
-                    <img src="${src}" />
-                    <h4>${params.name}</h4>
-                </picture>
-                `;
+        <script type="text/babel">
+            const $app = document.getElementById("app");
+            const useState = React.useState;
+
+            const Avatar = props => {
+            const [enabled, setEnabled] = useState(true);
+                //    const enabled = state[0]
+                //    const setEnabled = state[1]
+            const src = `https://randomuser.me/api/portraits/women/${props.id}.jpg`;
+            
+            // const pictureClassName = props.size === "small" ? "is-small" : ""
+            let pictureClassName = "";
+            if (props.size === "small") {
+                pictureClassName = "is-small";
+                }else if (props.size === "large") {
+                    pictureClassName = "is-large";
+                }
+            
+            const imgClassName = enabled ? "" : "disabled";
+            
+            return (    
+            <picture className={pictureClassName}>
+                <img onClick={() => setEnabled(!enabled)}
+                className={imgClassName}
+                src={src}
+            />
+            <strong>{props.name}</strong>
+            </picture>
+            );
             };
 
-        $app.innerHTML += Avatar({ id:12, name: "nombre1"});
-        $app.innerHTML += Avatar({ id:23, name: "nombre2"});
-
-        $app.querySelectorAll('img').forEach(img => {
-            img.addEventListener('click', () => {
-                img.classList.toggle('disabled')
-            })
-        })
-*/
-            const $app = document.getElementById('app');
-            const h = React.createElement;
-
-            const Avatar = params =>{
-                const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
-                return h('img', {src});
-            };
-
-            ReactDOM.render(h(Avatar, { id: 18 }), $app);
-
-
+            ReactDOM.render(
+                <div>
+                    <Avatar id={25} name="nombre1" size="small" />
+                    <Avatar id={6} name="nombre2" />
+                    <Avatar id={10} size="large" />
+                </div>,
+                    $app);
 
         </script>
     </body>

@@ -37,22 +37,29 @@
 </head>
     <body>
         <h1>Mujeres en Tecnología</h1>
+        <a href="contador.html">Contador</a>
         <div id="app"></div>
         <script type="text/babel">
             const $app = document.getElementById("app");
             const useState = React.useState;
 
-            const Avatar = props => {
-            const [enabled, setEnabled] = useState(true);
+        //    const Avatar = props => {
+            const Avatar = ({ id, name = "Techie", size }) => {
+                const [enabled, setEnabled] = useState(true);
                 //    const enabled = state[0]
                 //    const setEnabled = state[1]
-            const src = `https://randomuser.me/api/portraits/women/${props.id}.jpg`;
-            
+            // const src = `https://randomuser.me/api/portraits/women/${props.id}.jpg`;
+            const src = `https://randomuser.me/api/portraits/women/${id}.jpg`;
+
+            if (!id) return "Guardiola que este Avatar no tiene id y por lo tanto tampoco imagen";
+            // if (!id) return <img src="https://randomuser.me/api/portraits/lego/1.jpg" />;
+
             // const pictureClassName = props.size === "small" ? "is-small" : ""
             let pictureClassName = "";
-            if (props.size === "small") {
+            // if (props.size === "small") {
+                if (size === "small") {
                 pictureClassName = "is-small";
-                }else if (props.size === "large") {
+                }else if (size === "large") {
                     pictureClassName = "is-large";
                 }
             
@@ -64,14 +71,14 @@
                 className={imgClassName}
                 src={src}
             />
-            <strong>{props.name}</strong>
+            <strong>{enabled ? name : "Desactivada"}</strong>
             </picture>
             );
             };
 
             ReactDOM.render(
                 <div>
-                    <Avatar id={25} name="nombre1" size="small" />
+                    <Avatar name="nombre1" size="small" />
                     <Avatar id={6} name="nombre2" />
                     <Avatar id={10} size="large" />
                 </div>,

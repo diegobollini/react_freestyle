@@ -108,7 +108,8 @@ Prueba JSX de forma rápida
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 type="text/babel"
 ```
-## Sesión práctica 04: componentes, estados
+
+## Sesión práctica 04: componentes, estados, defaultProps
 Por ejemplo buen uso de props:
 ```html
 const Avatar = props => {
@@ -118,4 +119,23 @@ Puedo desestructurar "objetos":
 ```html
 const Avatar = ({id, name, size}) => {
     <strong>{name}</strong>
+```
+
+## Sesión práctica 06: renderizado condicional
+Si no está declarada la id, devuelve ese texto por defecto (también puede ser una imagen)
+```html
+if (!id) return "Guardiola que este Avatar no tiene id y por lo tanto tampoco imagen";
+```
+
+Al desactivar, cambia el nombre
+```html
+<strong>{enabled ? name : "Desactivada"}</strong>
+```
+
+## Sesión práctica 07: contador, useState
+Los nombres de funciones en react empiezan con mayúscula (pascal case)!
+```html
+function Contador() {
+return <button>eeh botón</button>;
+}
 ```

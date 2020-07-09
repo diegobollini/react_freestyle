@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es_AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://image.flaticon.com/icons/svg/594/594354.svg">
+    <title>Contador test</title>
+    <style>
+        div {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-size: 24px;
+      }
+    </style>
+
+<!-- Cargar React. -->
+<!-- Nota: cuando se despliegue, reemplazar "development.js" con "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+    <body>
+        <h1>Test de Contador</h1>
+        <div id="app"></div>
+        <script type="text/babel">
+            const $app = document.getElementById("app");
+            const useState = React.useState;
+
+            function Contador() {
+            //    let contadorState = useState (3);
+            //    let contadorValue = contadorState[0];
+            //    let contadorActualizado = contadorState[1];
+                const [contadorValue, contadorActualizado] = useState (4);
+                const [clicksValue, clicksActualizado] = useState (0);
+
+                return (
+                    <div>
+                        <span>{contadorValue}</span>
+                        <button onClick = {() => {
+                            contadorActualizado(contadorValue + 1)
+                            clicksActualizado(clicksValue + 1)
+                        }}>Sumar</button>
+                        <button onClick = {() => {
+                            contadorActualizado(contadorValue - 1)
+                            clicksActualizado(clicksValue + 1)
+                        }}>Restar</button>
+                        <p>Clicks hechos {clicksValue} </p>
+                    </div>
+                );
+            }
+
+            ReactDOM.render(
+                <div>
+                    <Contador/>
+                </div>,
+                    $app);
+
+        </script>
+    </body>
+</html>
